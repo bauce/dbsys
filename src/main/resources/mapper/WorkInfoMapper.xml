@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djyjw.dao.WorkInfoMapper">
+  <resultMap id="BaseResultMap" type="com.djyjw.pojo.WorkInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="wid" jdbcType="INTEGER" property="wid" />
+    <result column="finished" jdbcType="INTEGER" property="finished" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="archived" jdbcType="INTEGER" property="archived" />
+    <result column="archived_time" jdbcType="TIMESTAMP" property="archivedTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.djyjw.pojo.WorkInfoWithBLOBs">
+    <result column="info" jdbcType="LONGVARCHAR" property="info" />
+    <result column="lcomment" jdbcType="LONGVARCHAR" property="lcomment" />
+    <result column="ocomment" jdbcType="LONGVARCHAR" property="ocomment" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, wid, finished, status, archived, archived_time
+  </sql>
+  <sql id="Blob_Column_List">
+    info, lcomment, ocomment
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.djyjw.pojo.WorkInfoExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from work_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.djyjw.pojo.WorkInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from work_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from work_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from work_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.djyjw.pojo.WorkInfoExample">
+    delete from work_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.djyjw.pojo.WorkInfoWithBLOBs">
+    insert into work_info (id, wid, finished, 
+      status, archived, archived_time, 
+      info, lcomment, ocomment
+      )
+    values (#{id,jdbcType=INTEGER}, #{wid,jdbcType=INTEGER}, #{finished,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{archived,jdbcType=INTEGER}, #{archivedTime,jdbcType=TIMESTAMP}, 
+      #{info,jdbcType=LONGVARCHAR}, #{lcomment,jdbcType=LONGVARCHAR}, #{ocomment,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.djyjw.pojo.WorkInfoWithBLOBs">
+    insert into work_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="wid != null">
+        wid,
+      </if>
+      <if test="finished != null">
+        finished,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="archived != null">
+        archived,
+      </if>
+      <if test="archivedTime != null">
+        archived_time,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="lcomment != null">
+        lcomment,
+      </if>
+      <if test="ocomment != null">
+        ocomment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="wid != null">
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="finished != null">
+        #{finished,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="archived != null">
+        #{archived,jdbcType=INTEGER},
+      </if>
+      <if test="archivedTime != null">
+        #{archivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lcomment != null">
+        #{lcomment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ocomment != null">
+        #{ocomment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.djyjw.pojo.WorkInfoExample" resultType="java.lang.Long">
+    select count(*) from work_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update work_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.wid != null">
+        wid = #{record.wid,jdbcType=INTEGER},
+      </if>
+      <if test="record.finished != null">
+        finished = #{record.finished,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.archived != null">
+        archived = #{record.archived,jdbcType=INTEGER},
+      </if>
+      <if test="record.archivedTime != null">
+        archived_time = #{record.archivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.info != null">
+        info = #{record.info,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.lcomment != null">
+        lcomment = #{record.lcomment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.ocomment != null">
+        ocomment = #{record.ocomment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update work_info
+    set id = #{record.id,jdbcType=INTEGER},
+      wid = #{record.wid,jdbcType=INTEGER},
+      finished = #{record.finished,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      archived = #{record.archived,jdbcType=INTEGER},
+      archived_time = #{record.archivedTime,jdbcType=TIMESTAMP},
+      info = #{record.info,jdbcType=LONGVARCHAR},
+      lcomment = #{record.lcomment,jdbcType=LONGVARCHAR},
+      ocomment = #{record.ocomment,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update work_info
+    set id = #{record.id,jdbcType=INTEGER},
+      wid = #{record.wid,jdbcType=INTEGER},
+      finished = #{record.finished,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      archived = #{record.archived,jdbcType=INTEGER},
+      archived_time = #{record.archivedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.djyjw.pojo.WorkInfoWithBLOBs">
+    update work_info
+    <set>
+      <if test="wid != null">
+        wid = #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="finished != null">
+        finished = #{finished,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="archived != null">
+        archived = #{archived,jdbcType=INTEGER},
+      </if>
+      <if test="archivedTime != null">
+        archived_time = #{archivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lcomment != null">
+        lcomment = #{lcomment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ocomment != null">
+        ocomment = #{ocomment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.djyjw.pojo.WorkInfoWithBLOBs">
+    update work_info
+    set wid = #{wid,jdbcType=INTEGER},
+      finished = #{finished,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      archived = #{archived,jdbcType=INTEGER},
+      archived_time = #{archivedTime,jdbcType=TIMESTAMP},
+      info = #{info,jdbcType=LONGVARCHAR},
+      lcomment = #{lcomment,jdbcType=LONGVARCHAR},
+      ocomment = #{ocomment,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.djyjw.pojo.WorkInfo">
+    update work_info
+    set wid = #{wid,jdbcType=INTEGER},
+      finished = #{finished,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      archived = #{archived,jdbcType=INTEGER},
+      archived_time = #{archivedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
