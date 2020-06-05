@@ -1,8 +1,8 @@
-package com.djyjw.service;
+package com.djyjw.test;
 
 import com.djyjw.pojo.Department;
-import org.junit.After;
-import org.junit.Before;
+import com.djyjw.service.DepartmentService;
+import com.djyjw.utils.MD5Utils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +10,23 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/applicationContext-*.xml")
+@ContextConfiguration({ "classpath:spring/applicationContext-dao.xml", "classpath:spring/applicationContext-service.xml" })
 public class DepartmentServiceTest {
 
     @Autowired
-    private DepartmentService departmentService;
-
+    DepartmentService departmentService;
 
     @Test
     public void insertDepartment() {
         Department department = new Department();
-        department.setName("办公室");
-        department.setPasswd("87133876");
+        department.setName("组织部");
+        department.setPassword(MD5Utils.md5("8713s"));
         department.setType(1);
         departmentService.insertDepartment(department);
+    }
+
+    @Test
+    public void test(){
+        System.out.println(departmentService.login("组织部",MD5Utils.md5("8713s")));
     }
 }

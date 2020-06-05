@@ -104,66 +104,6 @@ public class ManageExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andLidIsNull() {
-            addCriterion("lid is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidIsNotNull() {
-            addCriterion("lid is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidEqualTo(Integer value) {
-            addCriterion("lid =", value, "lid");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidNotEqualTo(Integer value) {
-            addCriterion("lid <>", value, "lid");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidGreaterThan(Integer value) {
-            addCriterion("lid >", value, "lid");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("lid >=", value, "lid");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidLessThan(Integer value) {
-            addCriterion("lid <", value, "lid");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidLessThanOrEqualTo(Integer value) {
-            addCriterion("lid <=", value, "lid");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidIn(List<Integer> values) {
-            addCriterion("lid in", values, "lid");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidNotIn(List<Integer> values) {
-            addCriterion("lid not in", values, "lid");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidBetween(Integer value1, Integer value2) {
-            addCriterion("lid between", value1, value2, "lid");
-            return (Criteria) this;
-        }
-
-        public Criteria andLidNotBetween(Integer value1, Integer value2) {
-            addCriterion("lid not between", value1, value2, "lid");
-            return (Criteria) this;
-        }
-
         public Criteria andDidIsNull() {
             addCriterion("did is null");
             return (Criteria) this;
@@ -224,63 +164,63 @@ public class ManageExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
+        public Criteria andLidIsNull() {
+            addCriterion("lid is null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
+        public Criteria andLidIsNotNull() {
+            addCriterion("lid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(Integer value) {
-            addCriterion("type =", value, "type");
+        public Criteria andLidEqualTo(Integer value) {
+            addCriterion("lid =", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(Integer value) {
-            addCriterion("type <>", value, "type");
+        public Criteria andLidNotEqualTo(Integer value) {
+            addCriterion("lid <>", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(Integer value) {
-            addCriterion("type >", value, "type");
+        public Criteria andLidGreaterThan(Integer value) {
+            addCriterion("lid >", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("type >=", value, "type");
+        public Criteria andLidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("lid >=", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(Integer value) {
-            addCriterion("type <", value, "type");
+        public Criteria andLidLessThan(Integer value) {
+            addCriterion("lid <", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("type <=", value, "type");
+        public Criteria andLidLessThanOrEqualTo(Integer value) {
+            addCriterion("lid <=", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<Integer> values) {
-            addCriterion("type in", values, "type");
+        public Criteria andLidIn(List<Integer> values) {
+            addCriterion("lid in", values, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<Integer> values) {
-            addCriterion("type not in", values, "type");
+        public Criteria andLidNotIn(List<Integer> values) {
+            addCriterion("lid not in", values, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(Integer value1, Integer value2) {
-            addCriterion("type between", value1, value2, "type");
+        public Criteria andLidBetween(Integer value1, Integer value2) {
+            addCriterion("lid between", value1, value2, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("type not between", value1, value2, "type");
+        public Criteria andLidNotBetween(Integer value1, Integer value2) {
+            addCriterion("lid not between", value1, value2, "lid");
             return (Criteria) this;
         }
     }

@@ -28,4 +28,6 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+
+    Department login(@Param("name") String name, @Param("password") String password);
 }

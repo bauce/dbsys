@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.djyjw.pojo.Leader">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="password" jdbcType="CHAR" property="password" />
     <result column="type" jdbcType="INTEGER" property="type" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, passwd, type
+    id, name, password, type
   </sql>
   <select id="selectByExample" parameterType="com.djyjw.pojo.LeaderExample" resultMap="BaseResultMap">
     select
@@ -99,9 +99,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.djyjw.pojo.Leader">
-    insert into leader (id, name, passwd, 
+    insert into leader (id, name, password, 
       type)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=CHAR}, 
       #{type,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.djyjw.pojo.Leader">
@@ -113,8 +113,8 @@
       <if test="name != null">
         name,
       </if>
-      <if test="passwd != null">
-        passwd,
+      <if test="password != null">
+        password,
       </if>
       <if test="type != null">
         type,
@@ -127,8 +127,8 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="passwd != null">
-        #{passwd,jdbcType=VARCHAR},
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
@@ -150,8 +150,8 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.passwd != null">
-        passwd = #{record.passwd,jdbcType=VARCHAR},
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=CHAR},
       </if>
       <if test="record.type != null">
         type = #{record.type,jdbcType=INTEGER},
@@ -165,7 +165,7 @@
     update leader
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      passwd = #{record.passwd,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=CHAR},
       type = #{record.type,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,8 +177,8 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="passwd != null">
-        passwd = #{passwd,jdbcType=VARCHAR},
+      <if test="password != null">
+        password = #{password,jdbcType=CHAR},
       </if>
       <if test="type != null">
         type = #{type,jdbcType=INTEGER},
@@ -189,7 +189,7 @@
   <update id="updateByPrimaryKey" parameterType="com.djyjw.pojo.Leader">
     update leader
     set name = #{name,jdbcType=VARCHAR},
-      passwd = #{passwd,jdbcType=VARCHAR},
+      password = #{password,jdbcType=CHAR},
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

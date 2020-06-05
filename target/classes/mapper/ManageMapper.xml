@@ -2,9 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.djyjw.dao.ManageMapper">
   <resultMap id="BaseResultMap" type="com.djyjw.pojo.Manage">
-    <id column="lid" jdbcType="INTEGER" property="lid" />
     <id column="did" jdbcType="INTEGER" property="did" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="lid" jdbcType="INTEGER" property="lid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    lid, did, type
+    did, lid
   </sql>
   <select id="selectByExample" parameterType="com.djyjw.pojo.ManageExample" resultMap="BaseResultMap">
     select
@@ -81,17 +80,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.djyjw.pojo.ManageKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from manage
-    where lid = #{lid,jdbcType=INTEGER}
-      and did = #{did,jdbcType=INTEGER}
+    where did = #{did,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.djyjw.pojo.ManageKey">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from manage
-    where lid = #{lid,jdbcType=INTEGER}
-      and did = #{did,jdbcType=INTEGER}
+    where did = #{did,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.djyjw.pojo.ManageExample">
     delete from manage
@@ -100,33 +97,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.djyjw.pojo.Manage">
-    insert into manage (lid, did, type
-      )
-    values (#{lid,jdbcType=INTEGER}, #{did,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}
-      )
+    insert into manage (did, lid)
+    values (#{did,jdbcType=INTEGER}, #{lid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.djyjw.pojo.Manage">
     insert into manage
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="lid != null">
-        lid,
-      </if>
       <if test="did != null">
         did,
       </if>
-      <if test="type != null">
-        type,
+      <if test="lid != null">
+        lid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="lid != null">
-        #{lid,jdbcType=INTEGER},
-      </if>
       <if test="did != null">
         #{did,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
+      <if test="lid != null">
+        #{lid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -139,14 +128,11 @@
   <update id="updateByExampleSelective" parameterType="map">
     update manage
     <set>
-      <if test="record.lid != null">
-        lid = #{record.lid,jdbcType=INTEGER},
-      </if>
       <if test="record.did != null">
         did = #{record.did,jdbcType=INTEGER},
       </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=INTEGER},
+      <if test="record.lid != null">
+        lid = #{record.lid,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -155,9 +141,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update manage
-    set lid = #{record.lid,jdbcType=INTEGER},
-      did = #{record.did,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=INTEGER}
+    set did = #{record.did,jdbcType=INTEGER},
+      lid = #{record.lid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -165,17 +150,15 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.djyjw.pojo.Manage">
     update manage
     <set>
-      <if test="type != null">
-        type = #{type,jdbcType=INTEGER},
+      <if test="lid != null">
+        lid = #{lid,jdbcType=INTEGER},
       </if>
     </set>
-    where lid = #{lid,jdbcType=INTEGER}
-      and did = #{did,jdbcType=INTEGER}
+    where did = #{did,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.djyjw.pojo.Manage">
     update manage
-    set type = #{type,jdbcType=INTEGER}
-    where lid = #{lid,jdbcType=INTEGER}
-      and did = #{did,jdbcType=INTEGER}
+    set lid = #{lid,jdbcType=INTEGER}
+    where did = #{did,jdbcType=INTEGER}
   </update>
 </mapper>

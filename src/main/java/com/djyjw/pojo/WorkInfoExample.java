@@ -235,53 +235,123 @@ public class WorkInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andFinishedEqualTo(Integer value) {
+        public Criteria andFinishedEqualTo(Byte value) {
             addCriterion("finished =", value, "finished");
             return (Criteria) this;
         }
 
-        public Criteria andFinishedNotEqualTo(Integer value) {
+        public Criteria andFinishedNotEqualTo(Byte value) {
             addCriterion("finished <>", value, "finished");
             return (Criteria) this;
         }
 
-        public Criteria andFinishedGreaterThan(Integer value) {
+        public Criteria andFinishedGreaterThan(Byte value) {
             addCriterion("finished >", value, "finished");
             return (Criteria) this;
         }
 
-        public Criteria andFinishedGreaterThanOrEqualTo(Integer value) {
+        public Criteria andFinishedGreaterThanOrEqualTo(Byte value) {
             addCriterion("finished >=", value, "finished");
             return (Criteria) this;
         }
 
-        public Criteria andFinishedLessThan(Integer value) {
+        public Criteria andFinishedLessThan(Byte value) {
             addCriterion("finished <", value, "finished");
             return (Criteria) this;
         }
 
-        public Criteria andFinishedLessThanOrEqualTo(Integer value) {
+        public Criteria andFinishedLessThanOrEqualTo(Byte value) {
             addCriterion("finished <=", value, "finished");
             return (Criteria) this;
         }
 
-        public Criteria andFinishedIn(List<Integer> values) {
+        public Criteria andFinishedIn(List<Byte> values) {
             addCriterion("finished in", values, "finished");
             return (Criteria) this;
         }
 
-        public Criteria andFinishedNotIn(List<Integer> values) {
+        public Criteria andFinishedNotIn(List<Byte> values) {
             addCriterion("finished not in", values, "finished");
             return (Criteria) this;
         }
 
-        public Criteria andFinishedBetween(Integer value1, Integer value2) {
+        public Criteria andFinishedBetween(Byte value1, Byte value2) {
             addCriterion("finished between", value1, value2, "finished");
             return (Criteria) this;
         }
 
-        public Criteria andFinishedNotBetween(Integer value1, Integer value2) {
+        public Criteria andFinishedNotBetween(Byte value1, Byte value2) {
             addCriterion("finished not between", value1, value2, "finished");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeIsNull() {
+            addCriterion("pre_finish_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeIsNotNull() {
+            addCriterion("pre_finish_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeEqualTo(String value) {
+            addCriterion("pre_finish_time =", value, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeNotEqualTo(String value) {
+            addCriterion("pre_finish_time <>", value, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeGreaterThan(String value) {
+            addCriterion("pre_finish_time >", value, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("pre_finish_time >=", value, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeLessThan(String value) {
+            addCriterion("pre_finish_time <", value, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeLessThanOrEqualTo(String value) {
+            addCriterion("pre_finish_time <=", value, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeLike(String value) {
+            addCriterion("pre_finish_time like", value, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeNotLike(String value) {
+            addCriterion("pre_finish_time not like", value, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeIn(List<String> values) {
+            addCriterion("pre_finish_time in", values, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeNotIn(List<String> values) {
+            addCriterion("pre_finish_time not in", values, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeBetween(String value1, String value2) {
+            addCriterion("pre_finish_time between", value1, value2, "preFinishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPreFinishTimeNotBetween(String value1, String value2) {
+            addCriterion("pre_finish_time not between", value1, value2, "preFinishTime");
             return (Criteria) this;
         }
 
@@ -345,6 +415,66 @@ public class WorkInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("create_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("create_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("create_time =", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("create_time <>", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("create_time >", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_time >=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("create_time <", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("create_time <=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("create_time in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("create_time not in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("create_time between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("create_time not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
         public Criteria andArchivedIsNull() {
             addCriterion("archived is null");
             return (Criteria) this;
@@ -355,52 +485,52 @@ public class WorkInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andArchivedEqualTo(Integer value) {
+        public Criteria andArchivedEqualTo(Boolean value) {
             addCriterion("archived =", value, "archived");
             return (Criteria) this;
         }
 
-        public Criteria andArchivedNotEqualTo(Integer value) {
+        public Criteria andArchivedNotEqualTo(Boolean value) {
             addCriterion("archived <>", value, "archived");
             return (Criteria) this;
         }
 
-        public Criteria andArchivedGreaterThan(Integer value) {
+        public Criteria andArchivedGreaterThan(Boolean value) {
             addCriterion("archived >", value, "archived");
             return (Criteria) this;
         }
 
-        public Criteria andArchivedGreaterThanOrEqualTo(Integer value) {
+        public Criteria andArchivedGreaterThanOrEqualTo(Boolean value) {
             addCriterion("archived >=", value, "archived");
             return (Criteria) this;
         }
 
-        public Criteria andArchivedLessThan(Integer value) {
+        public Criteria andArchivedLessThan(Boolean value) {
             addCriterion("archived <", value, "archived");
             return (Criteria) this;
         }
 
-        public Criteria andArchivedLessThanOrEqualTo(Integer value) {
+        public Criteria andArchivedLessThanOrEqualTo(Boolean value) {
             addCriterion("archived <=", value, "archived");
             return (Criteria) this;
         }
 
-        public Criteria andArchivedIn(List<Integer> values) {
+        public Criteria andArchivedIn(List<Boolean> values) {
             addCriterion("archived in", values, "archived");
             return (Criteria) this;
         }
 
-        public Criteria andArchivedNotIn(List<Integer> values) {
+        public Criteria andArchivedNotIn(List<Boolean> values) {
             addCriterion("archived not in", values, "archived");
             return (Criteria) this;
         }
 
-        public Criteria andArchivedBetween(Integer value1, Integer value2) {
+        public Criteria andArchivedBetween(Boolean value1, Boolean value2) {
             addCriterion("archived between", value1, value2, "archived");
             return (Criteria) this;
         }
 
-        public Criteria andArchivedNotBetween(Integer value1, Integer value2) {
+        public Criteria andArchivedNotBetween(Boolean value1, Boolean value2) {
             addCriterion("archived not between", value1, value2, "archived");
             return (Criteria) this;
         }

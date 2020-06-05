@@ -4,9 +4,11 @@
   <resultMap id="BaseResultMap" type="com.djyjw.pojo.WorkInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="wid" jdbcType="INTEGER" property="wid" />
-    <result column="finished" jdbcType="INTEGER" property="finished" />
+    <result column="finished" jdbcType="TINYINT" property="finished" />
+    <result column="pre_finish_time" jdbcType="VARCHAR" property="preFinishTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="archived" jdbcType="INTEGER" property="archived" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="archived" jdbcType="BIT" property="archived" />
     <result column="archived_time" jdbcType="TIMESTAMP" property="archivedTime" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.djyjw.pojo.WorkInfoWithBLOBs">
@@ -73,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, wid, finished, status, archived, archived_time
+    id, wid, finished, pre_finish_time, status, create_time, archived, archived_time
   </sql>
   <sql id="Blob_Column_List">
     info, lcomment, ocomment
@@ -128,13 +130,13 @@
   </delete>
   <insert id="insert" parameterType="com.djyjw.pojo.WorkInfoWithBLOBs">
     insert into work_info (id, wid, finished, 
-      status, archived, archived_time, 
-      info, lcomment, ocomment
-      )
-    values (#{id,jdbcType=INTEGER}, #{wid,jdbcType=INTEGER}, #{finished,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{archived,jdbcType=INTEGER}, #{archivedTime,jdbcType=TIMESTAMP}, 
-      #{info,jdbcType=LONGVARCHAR}, #{lcomment,jdbcType=LONGVARCHAR}, #{ocomment,jdbcType=LONGVARCHAR}
-      )
+      pre_finish_time, status, create_time, 
+      archived, archived_time, info, 
+      lcomment, ocomment)
+    values (#{id,jdbcType=INTEGER}, #{wid,jdbcType=INTEGER}, #{finished,jdbcType=TINYINT}, 
+      #{preFinishTime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{archived,jdbcType=BIT}, #{archivedTime,jdbcType=TIMESTAMP}, #{info,jdbcType=LONGVARCHAR}, 
+      #{lcomment,jdbcType=LONGVARCHAR}, #{ocomment,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.djyjw.pojo.WorkInfoWithBLOBs">
     insert into work_info
@@ -148,8 +150,14 @@
       <if test="finished != null">
         finished,
       </if>
+      <if test="preFinishTime != null">
+        pre_finish_time,
+      </if>
       <if test="status != null">
         status,
+      </if>
+      <if test="createTime != null">
+        create_time,
       </if>
       <if test="archived != null">
         archived,
@@ -175,13 +183,19 @@
         #{wid,jdbcType=INTEGER},
       </if>
       <if test="finished != null">
-        #{finished,jdbcType=INTEGER},
+        #{finished,jdbcType=TINYINT},
+      </if>
+      <if test="preFinishTime != null">
+        #{preFinishTime,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="archived != null">
-        #{archived,jdbcType=INTEGER},
+        #{archived,jdbcType=BIT},
       </if>
       <if test="archivedTime != null">
         #{archivedTime,jdbcType=TIMESTAMP},
@@ -213,13 +227,19 @@
         wid = #{record.wid,jdbcType=INTEGER},
       </if>
       <if test="record.finished != null">
-        finished = #{record.finished,jdbcType=INTEGER},
+        finished = #{record.finished,jdbcType=TINYINT},
+      </if>
+      <if test="record.preFinishTime != null">
+        pre_finish_time = #{record.preFinishTime,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.archived != null">
-        archived = #{record.archived,jdbcType=INTEGER},
+        archived = #{record.archived,jdbcType=BIT},
       </if>
       <if test="record.archivedTime != null">
         archived_time = #{record.archivedTime,jdbcType=TIMESTAMP},
@@ -242,9 +262,11 @@
     update work_info
     set id = #{record.id,jdbcType=INTEGER},
       wid = #{record.wid,jdbcType=INTEGER},
-      finished = #{record.finished,jdbcType=INTEGER},
+      finished = #{record.finished,jdbcType=TINYINT},
+      pre_finish_time = #{record.preFinishTime,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
-      archived = #{record.archived,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      archived = #{record.archived,jdbcType=BIT},
       archived_time = #{record.archivedTime,jdbcType=TIMESTAMP},
       info = #{record.info,jdbcType=LONGVARCHAR},
       lcomment = #{record.lcomment,jdbcType=LONGVARCHAR},
@@ -257,9 +279,11 @@
     update work_info
     set id = #{record.id,jdbcType=INTEGER},
       wid = #{record.wid,jdbcType=INTEGER},
-      finished = #{record.finished,jdbcType=INTEGER},
+      finished = #{record.finished,jdbcType=TINYINT},
+      pre_finish_time = #{record.preFinishTime,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
-      archived = #{record.archived,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      archived = #{record.archived,jdbcType=BIT},
       archived_time = #{record.archivedTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -272,13 +296,19 @@
         wid = #{wid,jdbcType=INTEGER},
       </if>
       <if test="finished != null">
-        finished = #{finished,jdbcType=INTEGER},
+        finished = #{finished,jdbcType=TINYINT},
+      </if>
+      <if test="preFinishTime != null">
+        pre_finish_time = #{preFinishTime,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="archived != null">
-        archived = #{archived,jdbcType=INTEGER},
+        archived = #{archived,jdbcType=BIT},
       </if>
       <if test="archivedTime != null">
         archived_time = #{archivedTime,jdbcType=TIMESTAMP},
@@ -298,9 +328,11 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.djyjw.pojo.WorkInfoWithBLOBs">
     update work_info
     set wid = #{wid,jdbcType=INTEGER},
-      finished = #{finished,jdbcType=INTEGER},
+      finished = #{finished,jdbcType=TINYINT},
+      pre_finish_time = #{preFinishTime,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      archived = #{archived,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      archived = #{archived,jdbcType=BIT},
       archived_time = #{archivedTime,jdbcType=TIMESTAMP},
       info = #{info,jdbcType=LONGVARCHAR},
       lcomment = #{lcomment,jdbcType=LONGVARCHAR},
@@ -310,9 +342,11 @@
   <update id="updateByPrimaryKey" parameterType="com.djyjw.pojo.WorkInfo">
     update work_info
     set wid = #{wid,jdbcType=INTEGER},
-      finished = #{finished,jdbcType=INTEGER},
+      finished = #{finished,jdbcType=TINYINT},
+      pre_finish_time = #{preFinishTime,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      archived = #{archived,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      archived = #{archived,jdbcType=BIT},
       archived_time = #{archivedTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

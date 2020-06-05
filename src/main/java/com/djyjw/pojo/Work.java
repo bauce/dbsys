@@ -5,11 +5,17 @@ public class Work {
 
     private Float num;
 
+    private Integer type;
+
     private Integer did;
 
     private String duetime;
 
     private Byte finished;
+
+    private String finishTime;
+
+    private String other;
 
     private String content;
 
@@ -27,6 +33,14 @@ public class Work {
 
     public void setNum(Float num) {
         this.num = num;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Integer getDid() {
@@ -51,6 +65,22 @@ public class Work {
 
     public void setFinished(Byte finished) {
         this.finished = finished;
+    }
+
+    public String getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(String finishTime) {
+        this.finishTime = finishTime == null ? null : finishTime.trim();
+    }
+
+    public String getOther() {
+        return other;
+    }
+
+    public void setOther(String other) {
+        this.other = other == null ? null : other.trim();
     }
 
     public String getContent() {

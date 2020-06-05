@@ -4,9 +4,25 @@
   <resultMap id="BaseResultMap" type="com.djyjw.pojo.Department">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="password" jdbcType="CHAR" property="password" />
     <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="manager" jdbcType="VARCHAR" property="manager" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
   </resultMap>
+
+  <select id="login" resultMap="BaseResultMap">
+    select * from department
+    <where>
+      <if test="name != null">
+        and name = #{name}
+      </if>
+      <if test="password != null">
+        and password = #{password}
+      </if>
+    </where>
+  </select>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -66,7 +82,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, passwd, type
+    id, name, password, type, manager, email, phone
   </sql>
   <select id="selectByExample" parameterType="com.djyjw.pojo.DepartmentExample" resultMap="BaseResultMap">
     select
@@ -99,10 +115,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.djyjw.pojo.Department">
-    insert into department (id, name, passwd, 
-      type)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER})
+    insert into department (id, name, password, 
+      type, manager, email, 
+      phone)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=CHAR}, 
+      #{type,jdbcType=INTEGER}, #{manager,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.djyjw.pojo.Department">
     insert into department
@@ -113,11 +131,20 @@
       <if test="name != null">
         name,
       </if>
-      <if test="passwd != null">
-        passwd,
+      <if test="password != null">
+        password,
       </if>
       <if test="type != null">
         type,
+      </if>
+      <if test="manager != null">
+        manager,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -127,11 +154,20 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="passwd != null">
-        #{passwd,jdbcType=VARCHAR},
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null">
+        #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -150,11 +186,20 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.passwd != null">
-        passwd = #{record.passwd,jdbcType=VARCHAR},
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=CHAR},
       </if>
       <if test="record.type != null">
         type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.manager != null">
+        manager = #{record.manager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -165,8 +210,11 @@
     update department
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      passwd = #{record.passwd,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=INTEGER}
+      password = #{record.password,jdbcType=CHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      manager = #{record.manager,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -177,11 +225,20 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="passwd != null">
-        passwd = #{passwd,jdbcType=VARCHAR},
+      <if test="password != null">
+        password = #{password,jdbcType=CHAR},
       </if>
       <if test="type != null">
         type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null">
+        manager = #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -189,8 +246,11 @@
   <update id="updateByPrimaryKey" parameterType="com.djyjw.pojo.Department">
     update department
     set name = #{name,jdbcType=VARCHAR},
-      passwd = #{passwd,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER}
+      password = #{password,jdbcType=CHAR},
+      type = #{type,jdbcType=INTEGER},
+      manager = #{manager,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

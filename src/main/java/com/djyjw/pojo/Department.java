@@ -5,9 +5,15 @@ public class Department {
 
     private String name;
 
-    private String passwd;
+    private String password;
 
     private Integer type;
+
+    private String manager;
+
+    private String email;
+
+    private String phone;
 
     public Integer getId() {
         return id;
@@ -25,12 +31,12 @@ public class Department {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd == null ? null : passwd.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     public Integer getType() {
@@ -39,5 +45,29 @@ public class Department {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager == null ? null : manager.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 }

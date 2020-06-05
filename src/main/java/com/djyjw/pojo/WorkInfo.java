@@ -7,11 +7,15 @@ public class WorkInfo {
 
     private Integer wid;
 
-    private Integer finished;
+    private Byte finished;
+
+    private String preFinishTime;
 
     private Integer status;
 
-    private Integer archived;
+    private Date createTime;
+
+    private Boolean archived;
 
     private Date archivedTime;
 
@@ -31,12 +35,20 @@ public class WorkInfo {
         this.wid = wid;
     }
 
-    public Integer getFinished() {
+    public Byte getFinished() {
         return finished;
     }
 
-    public void setFinished(Integer finished) {
+    public void setFinished(Byte finished) {
         this.finished = finished;
+    }
+
+    public String getPreFinishTime() {
+        return preFinishTime;
+    }
+
+    public void setPreFinishTime(String preFinishTime) {
+        this.preFinishTime = preFinishTime == null ? null : preFinishTime.trim();
     }
 
     public Integer getStatus() {
@@ -47,11 +59,19 @@ public class WorkInfo {
         this.status = status;
     }
 
-    public Integer getArchived() {
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Boolean getArchived() {
         return archived;
     }
 
-    public void setArchived(Integer archived) {
+    public void setArchived(Boolean archived) {
         this.archived = archived;
     }
 

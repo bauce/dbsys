@@ -21,4 +21,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentMapper.insert(department);
         return 0;
     }
+
+    @Override
+    public Department login(String name, String password) {
+        return departmentMapper.login(name, password);
+    }
 }

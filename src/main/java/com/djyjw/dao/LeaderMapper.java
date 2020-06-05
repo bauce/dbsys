@@ -2,8 +2,9 @@ package com.djyjw.dao;
 
 import com.djyjw.pojo.Leader;
 import com.djyjw.pojo.LeaderExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface LeaderMapper {
     long countByExample(LeaderExample example);

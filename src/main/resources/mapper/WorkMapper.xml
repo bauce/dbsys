@@ -4,9 +4,12 @@
   <resultMap id="BaseResultMap" type="com.djyjw.pojo.Work">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="num" jdbcType="REAL" property="num" />
+    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="did" jdbcType="INTEGER" property="did" />
     <result column="duetime" jdbcType="VARCHAR" property="duetime" />
     <result column="finished" jdbcType="TINYINT" property="finished" />
+    <result column="finish_time" jdbcType="VARCHAR" property="finishTime" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.djyjw.pojo.Work">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
@@ -70,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, num, did, duetime, finished
+    id, num, type, did, duetime, finished, finish_time, other
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -124,10 +127,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.djyjw.pojo.Work">
-    insert into work (id, num, did, duetime, 
-      finished, content)
-    values (#{id,jdbcType=INTEGER}, #{num,jdbcType=REAL}, #{did,jdbcType=INTEGER}, #{duetime,jdbcType=VARCHAR}, 
-      #{finished,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR})
+    insert into work (id, num, type, did, 
+      duetime, finished, finish_time, 
+      other, content)
+    values (#{id,jdbcType=INTEGER}, #{num,jdbcType=REAL}, #{type,jdbcType=INTEGER}, #{did,jdbcType=INTEGER}, 
+      #{duetime,jdbcType=VARCHAR}, #{finished,jdbcType=TINYINT}, #{finishTime,jdbcType=VARCHAR}, 
+      #{other,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.djyjw.pojo.Work">
     insert into work
@@ -138,6 +143,9 @@
       <if test="num != null">
         num,
       </if>
+      <if test="type != null">
+        type,
+      </if>
       <if test="did != null">
         did,
       </if>
@@ -146,6 +154,12 @@
       </if>
       <if test="finished != null">
         finished,
+      </if>
+      <if test="finishTime != null">
+        finish_time,
+      </if>
+      <if test="other != null">
+        other,
       </if>
       <if test="content != null">
         content,
@@ -158,6 +172,9 @@
       <if test="num != null">
         #{num,jdbcType=REAL},
       </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
       <if test="did != null">
         #{did,jdbcType=INTEGER},
       </if>
@@ -166,6 +183,12 @@
       </if>
       <if test="finished != null">
         #{finished,jdbcType=TINYINT},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
@@ -187,6 +210,9 @@
       <if test="record.num != null">
         num = #{record.num,jdbcType=REAL},
       </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
       <if test="record.did != null">
         did = #{record.did,jdbcType=INTEGER},
       </if>
@@ -195,6 +221,12 @@
       </if>
       <if test="record.finished != null">
         finished = #{record.finished,jdbcType=TINYINT},
+      </if>
+      <if test="record.finishTime != null">
+        finish_time = #{record.finishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other != null">
+        other = #{record.other,jdbcType=VARCHAR},
       </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=LONGVARCHAR},
@@ -208,9 +240,12 @@
     update work
     set id = #{record.id,jdbcType=INTEGER},
       num = #{record.num,jdbcType=REAL},
+      type = #{record.type,jdbcType=INTEGER},
       did = #{record.did,jdbcType=INTEGER},
       duetime = #{record.duetime,jdbcType=VARCHAR},
       finished = #{record.finished,jdbcType=TINYINT},
+      finish_time = #{record.finishTime,jdbcType=VARCHAR},
+      other = #{record.other,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -220,9 +255,12 @@
     update work
     set id = #{record.id,jdbcType=INTEGER},
       num = #{record.num,jdbcType=REAL},
+      type = #{record.type,jdbcType=INTEGER},
       did = #{record.did,jdbcType=INTEGER},
       duetime = #{record.duetime,jdbcType=VARCHAR},
-      finished = #{record.finished,jdbcType=TINYINT}
+      finished = #{record.finished,jdbcType=TINYINT},
+      finish_time = #{record.finishTime,jdbcType=VARCHAR},
+      other = #{record.other,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -233,6 +271,9 @@
       <if test="num != null">
         num = #{num,jdbcType=REAL},
       </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
       <if test="did != null">
         did = #{did,jdbcType=INTEGER},
       </if>
@@ -241,6 +282,12 @@
       </if>
       <if test="finished != null">
         finished = #{finished,jdbcType=TINYINT},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
@@ -251,18 +298,24 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.djyjw.pojo.Work">
     update work
     set num = #{num,jdbcType=REAL},
+      type = #{type,jdbcType=INTEGER},
       did = #{did,jdbcType=INTEGER},
       duetime = #{duetime,jdbcType=VARCHAR},
       finished = #{finished,jdbcType=TINYINT},
+      finish_time = #{finishTime,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.djyjw.pojo.Work">
     update work
     set num = #{num,jdbcType=REAL},
+      type = #{type,jdbcType=INTEGER},
       did = #{did,jdbcType=INTEGER},
       duetime = #{duetime,jdbcType=VARCHAR},
-      finished = #{finished,jdbcType=TINYINT}
+      finished = #{finished,jdbcType=TINYINT},
+      finish_time = #{finishTime,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

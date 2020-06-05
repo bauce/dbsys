@@ -5,7 +5,7 @@ public class Leader {
 
     private String name;
 
-    private String passwd;
+    private String password;
 
     private Integer type;
 
@@ -25,12 +25,12 @@ public class Leader {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd == null ? null : passwd.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     public Integer getType() {

@@ -3,8 +3,9 @@ package com.djyjw.dao;
 import com.djyjw.pojo.WorkInfo;
 import com.djyjw.pojo.WorkInfoExample;
 import com.djyjw.pojo.WorkInfoWithBLOBs;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface WorkInfoMapper {
     long countByExample(WorkInfoExample example);

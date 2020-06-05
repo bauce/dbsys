@@ -1,13 +1,23 @@
 package com.djyjw.pojo;
 
-public class Manage extends ManageKey {
-    private Integer type;
+public class Manage {
+    private Integer did;
 
-    public Integer getType() {
-        return type;
+    private Integer lid;
+
+    public Integer getDid() {
+        return did;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setDid(Integer did) {
+        this.did = did;
+    }
+
+    public Integer getLid() {
+        return lid;
+    }
+
+    public void setLid(Integer lid) {
+        this.lid = lid;
     }
 }
